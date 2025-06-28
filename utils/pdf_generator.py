@@ -17,13 +17,14 @@ os.makedirs(files_folder, exist_ok=True)
 
 templates_folder = os.path.join(current_folder, "pdf_utils")
 original_pdf = os.path.join(templates_folder, "template.pdf")
+image_path = os.path.join(templates_folder, "logo.png")
 fonts_folder = os.path.join(templates_folder, "fonts")
 arial = os.path.join(fonts_folder, "ARIAL.TTF")
 arial_bold = os.path.join(fonts_folder, "ARIALBD.TTF")
 
 
 def generate_invoice(
-    name: str, date: str, grade_code: str, cal: float, data: np.array
+    name: str, date: str, grade_code: str, cal: float, image_path: str, data: np.array
 ) -> str:
     """Generate invoice PDF from data
 
@@ -51,6 +52,11 @@ def generate_invoice(
     c.setFont("arialbd", 22)
     c.drawRightString(width - 70, 300, name)
     c.drawRightString(width - 70, 270, date)
+
+    image_width = 130
+    x = (width - image_width) / 2
+    c.drawImage(image_path, x, 115, width=image_width, height=image_width)
+
     c.showPage()
     c.save()
 
@@ -81,6 +87,7 @@ if __name__ == "__main__":
         date="30/12/2025",
         grade_code="MDP",
         cal= 38.9,
+        image_path=image_path,
         data=np.array(
             [
                 53.1,
@@ -112,6 +119,7 @@ if __name__ == "__main__":
         date="30/12/2025",
         grade_code="P",
         cal= 50,
+        image_path=image_path,
         data=np.array(
             [
                 53.1,
@@ -143,6 +151,7 @@ if __name__ == "__main__":
         date="30/12/2025",
         grade_code="MEP",
         cal= 70,
+        image_path=image_path,
         data=np.array(
             [
                 53.1,
