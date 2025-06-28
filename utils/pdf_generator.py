@@ -5,6 +5,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import legal
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.colors import Color, black, darkgray
 import numpy as np
 
 
@@ -56,6 +57,13 @@ def generate_invoice(
     image_width = 130
     x = (width - image_width) / 2
     c.drawImage(image_path, x, 115, width=image_width, height=image_width)
+
+    c.setFont("arial", 9)
+    footer_text = f"Reporte AFT de {name}"
+    text_width = c.stringWidth(footer_text, "arial", 9)
+    x = (width - text_width) / 2 + 15
+    c.setFillColor(darkgray)  # también puedes usar: Color(0.7, 0.7, 0.7)
+    c.drawString(x, 53, footer_text)
 
     c.showPage()
     c.save()
