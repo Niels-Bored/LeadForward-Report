@@ -76,6 +76,13 @@ def generate_invoice(
     c.showPage()
 
     #Página 3
+    c.setFont("arialbd", 11)
+    c.drawRightString(137, 675, f'"{name}".')
+
+
+    c.setFont("arialbd", 11)
+    c.drawRightString(340, 150, f'"{name}".')
+                      
     c.setFont("arial", 9)
     c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
