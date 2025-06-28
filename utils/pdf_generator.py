@@ -49,6 +49,11 @@ def generate_invoice(
 
     width, height = legal
 
+    # Footer setting
+    footer_text = f"Reporte AFT de {name}"
+    text_width = c.stringWidth(footer_text, "arial", 9)
+    x = (width - text_width) / 2 + 15
+
     # Page 1
     c.setFont("arialbd", 22)
     c.drawRightString(width - 70, 300, name)
@@ -59,13 +64,35 @@ def generate_invoice(
     c.drawImage(image_path, x, 115, width=image_width, height=image_width)
 
     c.setFont("arial", 9)
-    footer_text = f"Reporte AFT de {name}"
-    text_width = c.stringWidth(footer_text, "arial", 9)
-    x = (width - text_width) / 2 + 15
-    c.setFillColor(darkgray)  # también puedes usar: Color(0.7, 0.7, 0.7)
+    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
 
     c.showPage()
+
+    #Página 2
+    c.setFont("arial", 9)
+    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.drawString(x, 53, footer_text)
+    c.showPage()
+
+    #Página 3
+    c.setFont("arial", 9)
+    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.drawString(x, 53, footer_text)
+    c.showPage()
+
+    #Página 4
+    c.setFont("arial", 9)
+    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.drawString(x, 53, footer_text)
+    c.showPage()
+
+    #Página 5
+    c.setFont("arial", 9)
+    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.drawString(x, 53, footer_text)
+    c.showPage()
+
     c.save()
 
     packet.seek(0)
@@ -75,10 +102,11 @@ def generate_invoice(
     existing_pdf = PdfReader(open(original_pdf, "rb"))
     output = PdfWriter()
 
-    # Page creation
-    page = existing_pdf.pages[0]
-    page.merge_page(new_pdf.pages[0])
-    output.add_page(page)
+    # Pages creation
+    for i in range(5):
+        page = existing_pdf.pages[i]
+        page.merge_page(new_pdf.pages[i])
+        output.add_page(page)
 
     new_pdf = os.path.join(files_folder, f"{name}.pdf")
     output_stream = open(new_pdf, "wb")
