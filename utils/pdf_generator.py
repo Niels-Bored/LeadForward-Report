@@ -81,7 +81,7 @@ def generate_invoice(
 
     #Página 3
     c.setFont("arialbd", 11)
-    c.drawRightString(137, 675, f'"{name}".')
+    c.drawString(73, 675, f'"{name}".')
 
     bell_plot_path = generate_bell_curve_plot(cal, data.mean(), data)
     image_width = 400
