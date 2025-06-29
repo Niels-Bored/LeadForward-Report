@@ -79,9 +79,39 @@ def generate_invoice(
     c.setFont("arialbd", 11)
     c.drawRightString(137, 675, f'"{name}".')
 
+    c.setFont("arialbd", 30)
+    c.drawString(68, 328, "□")
+
+    c.setFont("arialbd", 30)
+    c.drawString(68, 295, "□")
+
+    c.setFont("arialbd", 30)
+    c.drawString(68, 263, "□")
+    
+    c.setFont("arialbd", 30)
+    c.drawString(68, 231, "□")
+
+    c.setFont("arialbd", 30)
+    c.drawString(68, 200, "□")
+
+    if grade_code == "MDP":
+        c.setFont("arialbd", 30)
+        c.drawString(68, 328, "■")
+    elif grade_code == "DP":
+        c.setFont("arialbd", 30)
+        c.drawString(68, 295, "■")
+    elif grade_code == "P":
+        c.setFont("arialbd", 30)
+        c.drawString(68, 263, "■")
+    elif grade_code == "AP":
+        c.setFont("arialbd", 30)
+        c.drawString(68, 231, "■")
+    elif grade_code == "MEP":
+        c.setFont("arialbd", 30)
+        c.drawString(68, 200, "■")
 
     c.setFont("arialbd", 11)
-    c.drawRightString(340, 150, f'"{name}".')
+    c.drawString(275, 150, f'"{name}".')
                       
     c.setFont("arial", 9)
     c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
@@ -128,7 +158,7 @@ if __name__ == "__main__":
     generate_invoice(
         name="Abel Soto",
         date="30/12/2025",
-        grade_code="MDP",
+        grade_code="MEP",
         cal= 38.9,
         image_path=image_path,
         data=np.array(
