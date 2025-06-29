@@ -7,6 +7,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.colors import Color, black, darkgray
 import numpy as np
+from graphics_generator import generate_bell_curve_plot
 
 
 current_folder = os.path.dirname(__file__)
@@ -49,11 +50,6 @@ def generate_invoice(
 
     width, height = legal
 
-    # Footer setting
-    footer_text = f"Reporte AFT de {name}"
-    text_width = c.stringWidth(footer_text, "arial", 9)
-    x = (width - text_width) / 2 + 15
-
     # Page 1
     c.setFont("arialbd", 22)
     c.drawRightString(width - 70, 300, name)
@@ -63,6 +59,10 @@ def generate_invoice(
     x = (width - image_width) / 2
     c.drawImage(image_path, x, 115, width=image_width, height=image_width)
 
+    # Footer setting
+    footer_text = f"Reporte AFT de {name}"
+    text_width = c.stringWidth(footer_text, "arial", 9)
+    x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
     c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
@@ -70,6 +70,10 @@ def generate_invoice(
     c.showPage()
 
     #Página 2
+    # Footer setting
+    footer_text = f"Reporte AFT de {name}"
+    text_width = c.stringWidth(footer_text, "arial", 9)
+    x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
     c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
@@ -78,6 +82,12 @@ def generate_invoice(
     #Página 3
     c.setFont("arialbd", 11)
     c.drawRightString(137, 675, f'"{name}".')
+
+    bell_plot_path = generate_bell_curve_plot(cal, data.mean(), data)
+    image_width = 400
+    x = (width - image_width) / 2
+    c.drawImage(bell_plot_path, x, 390, width=image_width, height=200)
+
 
     c.setFont("arialbd", 30)
     c.drawString(68, 328, "□")
@@ -112,19 +122,31 @@ def generate_invoice(
 
     c.setFont("arialbd", 11)
     c.drawString(275, 150, f'"{name}".')
-                      
+
+    # Footer setting
+    footer_text = f"Reporte AFT de {name}"
+    text_width = c.stringWidth(footer_text, "arial", 9)
+    x = (width - text_width) / 2 + 15                
     c.setFont("arial", 9)
     c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
     #Página 4
+    # Footer setting
+    footer_text = f"Reporte AFT de {name}"
+    text_width = c.stringWidth(footer_text, "arial", 9)
+    x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
     c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
     #Página 5
+    # Footer setting
+    footer_text = f"Reporte AFT de {name}"
+    text_width = c.stringWidth(footer_text, "arial", 9)
+    x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
     c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
@@ -158,7 +180,7 @@ if __name__ == "__main__":
     generate_invoice(
         name="Abel Soto",
         date="30/12/2025",
-        grade_code="MEP",
+        grade_code="MDP",
         cal= 38.9,
         image_path=image_path,
         data=np.array(
