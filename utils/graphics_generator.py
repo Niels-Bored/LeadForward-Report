@@ -3,43 +3,74 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 import os
 
-def generate_bell_curve_plot(grade, mean_grades, grades, file_name="grafico_campana.png"):
+
+def generate_bell_curve_plot(
+    grade: str, mean_grades: str, grades: str, file_name: str = "grafico_campana.png"
+):
+    """Generate invoice PDF from data
+
+    Args:
+        name (str): _description_
+        date (str): _description_
+        grade_code (str): _description_
+        cal (str): _description_
+        data (str): _description_
+
+    Returns:
+        str: Generated path file
+    """
     # Calculate empiric parameters
     mu = np.mean(grades)
     sigma = np.std(grades)
 
     # Create adjusted normal distribution
-    x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
+    x = np.linspace(mu - 4 * sigma, mu + 4 * sigma, 1000)
     y = norm.pdf(x, mu, sigma)
 
     # Create figure
     plt.figure(figsize=(10, 5))
-    plt.plot(x, y, color='#3366cc', linewidth=2.5, label='Distribución General')
+    plt.plot(x, y, color="#3366cc", linewidth=2.5, label="Distribución General")
 
     # Lines of interest
-    plt.axvline(x=mean_grades, color='#ff9900', linestyle='--', linewidth=2, label=f'Media General ({mean_grades})')
-    plt.axvline(x=grade, color='#cc0000', linestyle='--', linewidth=2, label=f'Participante ({grade})')
+    plt.axvline(
+        x=mean_grades,
+        color="#ff9900",
+        linestyle="--",
+        linewidth=2,
+        label=f"Media General ({mean_grades})",
+    )
+    plt.axvline(
+        x=grade,
+        color="#cc0000",
+        linestyle="--",
+        linewidth=2,
+        label=f"Participante ({grade})",
+    )
 
     # Fill area under the curve
     x_fill = x[x <= grade]
     y_fill = norm.pdf(x_fill, mu, sigma)
-    plt.fill_between(x_fill, y_fill, color='#cc0000', alpha=0.2)
+    plt.fill_between(x_fill, y_fill, color="#cc0000", alpha=0.2)
 
-    plt.title('Distribución de Resultados - Posición del Participante', fontsize=16, fontweight='bold')
-    plt.xlabel('Índice de Resultado', fontsize=12)
-    plt.ylabel('Densidad Poblacional', fontsize=12)
+    plt.title(
+        "Distribución de Resultados - Posición del Participante",
+        fontsize=16,
+        fontweight="bold",
+    )
+    plt.xlabel("Índice de Resultado", fontsize=12)
+    plt.ylabel("Densidad Poblacional", fontsize=12)
     plt.xticks(fontsize=10)
     plt.yticks(fontsize=10)
     plt.legend(frameon=False, fontsize=11)
 
     plt.grid(False)
-    plt.gca().spines['top'].set_visible(False)
-    plt.gca().spines['right'].set_visible(False)
-    plt.gca().set_facecolor('white')
+    plt.gca().spines["top"].set_visible(False)
+    plt.gca().spines["right"].set_visible(False)
+    plt.gca().set_facecolor("white")
     plt.tight_layout()
 
     # Create folder in case it doesn't exists
-    carpeta_salida = "graficos"
+    carpeta_salida = "graphics"
     os.makedirs(carpeta_salida, exist_ok=True)
 
     # Save plot
@@ -49,6 +80,7 @@ def generate_bell_curve_plot(grade, mean_grades, grades, file_name="grafico_camp
 
     # Return absolut path
     return os.path.abspath(ruta_salida)
+
 
 if __name__ == "__main__":
     np.random.seed(0)

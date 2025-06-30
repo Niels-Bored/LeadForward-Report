@@ -25,17 +25,17 @@ arial = os.path.join(fonts_folder, "ARIAL.TTF")
 arial_bold = os.path.join(fonts_folder, "ARIALBD.TTF")
 
 
-def generate_invoice(
-    name: str, date: str, grade_code: str, cal: float, image_path: str, data: np.array
+def generate_report(
+    name: str, date: str, grade_code: str, final_score: float, image_path: str, data: list
 ) -> str:
-    """Generate invoice PDF from data
+    """Generate PDF report from data
 
     Args:
-        name (str): _description_
-        date (str): _description_
-        grade_code (str): _description_
-        cal (str): _description_
-        data (str): _description_
+        name (str): applicant's name
+        date (str): report issue date
+        grade_code (str): acronym for rating-based description
+        final_score (str): applicant's final score
+        data (list): applicants scores list
 
     Returns:
         str: Generated path file
@@ -84,7 +84,9 @@ def generate_invoice(
     c.setFont("arialbd", 11)
     c.drawString(73, 675, f'"{name}".')
 
-    bell_plot_path = generate_bell_curve_plot(cal, data.mean(), data)
+    data = np.array(data)
+
+    bell_plot_path = generate_bell_curve_plot(final_score, data.mean(), data)
     image_width = 400
     x = (width - image_width) / 2
     c.drawImage(bell_plot_path, x, 390, width=image_width, height=200)
@@ -178,11 +180,11 @@ def generate_invoice(
 
 
 if __name__ == "__main__":
-    generate_invoice(
+    generate_report(
         name="Abel Soto",
         date="30/12/2025",
         grade_code="MDP",
-        cal= 38.9,
+        final_score= 38.9,
         image_path=image_path,
         data=np.array(
             [
@@ -210,11 +212,11 @@ if __name__ == "__main__":
         ),
     )
 
-    generate_invoice(
+    generate_report(
         name="Abel Soto Martinez",
         date="30/12/2025",
         grade_code="P",
-        cal= 50,
+        final_score= 50,
         image_path=image_path,
         data=np.array(
             [
@@ -242,11 +244,11 @@ if __name__ == "__main__":
         ),
     )
 
-    generate_invoice(
+    generate_report(
         name="Abel Soto Martinez de la Cruz Parez de Dios",
         date="30/12/2025",
         grade_code="MEP",
-        cal= 70,
+        final_score= 70,
         image_path=image_path,
         data=np.array(
             [
