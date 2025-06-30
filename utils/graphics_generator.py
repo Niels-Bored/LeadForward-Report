@@ -5,19 +5,18 @@ import os
 
 
 def generate_bell_curve_plot(
-    grade: str, mean_grades: str, grades: str, file_name: str = "grafico_campana.png"
+    grade: str, mean_grades: str, grades: np.array, file_name: str = "grafico_campana.png"
 ):
-    """Generate invoice PDF from data
+    """Generate bell curve plot
 
     Args:
-        name (str): _description_
-        date (str): _description_
-        grade_code (str): _description_
-        cal (str): _description_
-        data (str): _description_
+        grade (str): applicant's score
+        mean_grades (str): score's mean
+        grades (str): applicants score list data
+        file_name (str): plot image file's name
 
     Returns:
-        str: Generated path file
+        str: Generated path plot
     """
     # Calculate empiric parameters
     mu = np.mean(grades)
@@ -88,4 +87,4 @@ if __name__ == "__main__":
 
     # Generate plot
     ruta = generate_bell_curve_plot(grade=65, mean_grades=70, grades=datos)
-    print("Imagen guardada en:", ruta)
+    print("Image save at:", ruta)
