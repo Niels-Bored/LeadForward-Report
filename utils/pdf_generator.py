@@ -49,6 +49,7 @@ def generate_invoice(
     c = canvas.Canvas(packet, legal)
 
     width, height = legal
+    color_darkgrey = Color(153/255, 153/255, 153/255)
 
     # Page 1
     c.setFont("arialbd", 22)
@@ -64,7 +65,7 @@ def generate_invoice(
     text_width = c.stringWidth(footer_text, "arial", 9)
     x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
-    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(color_darkgrey)  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
 
     c.showPage()
@@ -75,7 +76,7 @@ def generate_invoice(
     text_width = c.stringWidth(footer_text, "arial", 9)
     x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
-    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(Color(153/255, 153/255, 153/255))  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
@@ -128,7 +129,7 @@ def generate_invoice(
     text_width = c.stringWidth(footer_text, "arial", 9)
     x = (width - text_width) / 2 + 15                
     c.setFont("arial", 9)
-    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(Color(153/255, 153/255, 153/255))  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
@@ -138,7 +139,7 @@ def generate_invoice(
     text_width = c.stringWidth(footer_text, "arial", 9)
     x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
-    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(Color(153/255, 153/255, 153/255))  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
@@ -148,7 +149,7 @@ def generate_invoice(
     text_width = c.stringWidth(footer_text, "arial", 9)
     x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
-    c.setFillColor(darkgray)  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(Color(153/255, 153/255, 153/255))  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
