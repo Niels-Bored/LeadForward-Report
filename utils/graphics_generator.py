@@ -5,7 +5,10 @@ import os
 
 
 def generate_bell_curve_plot(
-    grade: str, mean_grades: str, grades: np.array, file_name: str = "grafico_campana.png"
+    grade: str,
+    mean_grades: str,
+    grades: np.array,
+    file_name: str = "grafico_campana.png",
 ):
     """Generate bell curve plot
 
