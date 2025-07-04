@@ -25,6 +25,23 @@ arial = os.path.join(fonts_folder, "ARIAL.TTF")
 arial_bold = os.path.join(fonts_folder, "ARIALBD.TTF")
 
 
+def footer_setting(c: canvas.Canvas, name: str, width: float, color: Color):
+    """Draw centered footer content
+
+    Args:
+        c (canvas.Canvas): PDF Canvas representation
+        name (str): applicant's name
+        width (float): PDF page width
+        color (Color): RGB color to draw text
+    """
+    footer_text = f"Reporte AFT de {name}"
+    text_width = c.stringWidth(footer_text, "arial", 9)
+    x = (width - text_width) / 2 + 15
+    c.setFont("arial", 9)
+    c.setFillColor(color)  # we could also use Color(0.7, 0.7, 0.7)
+    c.drawString(x, 53, footer_text)
+
+
 def generate_report(
     name: str,
     date: str,
@@ -65,26 +82,15 @@ def generate_report(
     x = (width - image_width) / 2
     c.drawImage(image_path, x, 115, width=image_width, height=image_width)
 
-    # Footer setting
-    footer_text = f"Reporte AFT de {name}"
-    text_width = c.stringWidth(footer_text, "arial", 9)
-    x = (width - text_width) / 2 + 15
-    c.setFont("arial", 9)
-    c.setFillColor(color_darkgrey)  # we could also use Color(0.7, 0.7, 0.7)
-    c.drawString(x, 53, footer_text)
+    # Draw footer content
+    footer_setting(c, name, width, color_darkgrey)
 
     c.showPage()
 
     # Página 2
-    # Footer setting
-    footer_text = f"Reporte AFT de {name}"
-    text_width = c.stringWidth(footer_text, "arial", 9)
-    x = (width - text_width) / 2 + 15
-    c.setFont("arial", 9)
-    c.setFillColor(
-        Color(153 / 255, 153 / 255, 153 / 255)
-    )  # we could also use Color(0.7, 0.7, 0.7)
-    c.drawString(x, 53, footer_text)
+    # Draw footer content
+    footer_setting(c, name, width, color_darkgrey)
+
     c.showPage()
 
     # Página 3
@@ -132,39 +138,21 @@ def generate_report(
     c.setFont("arialbd", 11)
     c.drawString(275, 150, f'"{name}".')
 
-    # Footer setting
-    footer_text = f"Reporte AFT de {name}"
-    text_width = c.stringWidth(footer_text, "arial", 9)
-    x = (width - text_width) / 2 + 15
-    c.setFont("arial", 9)
-    c.setFillColor(
-        Color(153 / 255, 153 / 255, 153 / 255)
-    )  # we could also use Color(0.7, 0.7, 0.7)
-    c.drawString(x, 53, footer_text)
+    # Draw footer content
+    footer_setting(c, name, width, color_darkgrey)
+
     c.showPage()
 
     # Página 4
-    # Footer setting
-    footer_text = f"Reporte AFT de {name}"
-    text_width = c.stringWidth(footer_text, "arial", 9)
-    x = (width - text_width) / 2 + 15
-    c.setFont("arial", 9)
-    c.setFillColor(
-        Color(153 / 255, 153 / 255, 153 / 255)
-    )  # we could also use Color(0.7, 0.7, 0.7)
-    c.drawString(x, 53, footer_text)
+    # Draw footer content
+    footer_setting(c, name, width, color_darkgrey)
+
     c.showPage()
 
     # Página 5
-    # Footer setting
-    footer_text = f"Reporte AFT de {name}"
-    text_width = c.stringWidth(footer_text, "arial", 9)
-    x = (width - text_width) / 2 + 15
-    c.setFont("arial", 9)
-    c.setFillColor(
-        Color(153 / 255, 153 / 255, 153 / 255)
-    )  # we could also use Color(0.7, 0.7, 0.7)
-    c.drawString(x, 53, footer_text)
+    # Draw footer content
+    footer_setting(c, name, width, color_darkgrey)
+
     c.showPage()
 
     c.save()
