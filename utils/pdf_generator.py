@@ -26,7 +26,12 @@ arial_bold = os.path.join(fonts_folder, "ARIALBD.TTF")
 
 
 def generate_report(
-    name: str, date: str, grade_code: str, final_score: float, image_path: str, data: list
+    name: str,
+    date: str,
+    grade_code: str,
+    final_score: float,
+    image_path: str,
+    data: list,
 ) -> str:
     """Generate PDF report from data
 
@@ -49,7 +54,7 @@ def generate_report(
     c = canvas.Canvas(packet, legal)
 
     width, height = legal
-    color_darkgrey = Color(153/255, 153/255, 153/255)
+    color_darkgrey = Color(153 / 255, 153 / 255, 153 / 255)
 
     # Page 1
     c.setFont("arialbd", 22)
@@ -70,17 +75,19 @@ def generate_report(
 
     c.showPage()
 
-    #Página 2
+    # Página 2
     # Footer setting
     footer_text = f"Reporte AFT de {name}"
     text_width = c.stringWidth(footer_text, "arial", 9)
     x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
-    c.setFillColor(Color(153/255, 153/255, 153/255))  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(
+        Color(153 / 255, 153 / 255, 153 / 255)
+    )  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
-    #Página 3
+    # Página 3
     c.setFont("arialbd", 11)
     c.drawString(73, 675, f'"{name}".')
 
@@ -91,7 +98,6 @@ def generate_report(
     x = (width - image_width) / 2
     c.drawImage(bell_plot_path, x, 390, width=image_width, height=200)
 
-
     c.setFont("arialbd", 30)
     c.drawString(68, 328, "□")
 
@@ -100,7 +106,7 @@ def generate_report(
 
     c.setFont("arialbd", 30)
     c.drawString(68, 263, "□")
-    
+
     c.setFont("arialbd", 30)
     c.drawString(68, 231, "□")
 
@@ -129,29 +135,35 @@ def generate_report(
     # Footer setting
     footer_text = f"Reporte AFT de {name}"
     text_width = c.stringWidth(footer_text, "arial", 9)
-    x = (width - text_width) / 2 + 15                
+    x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
-    c.setFillColor(Color(153/255, 153/255, 153/255))  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(
+        Color(153 / 255, 153 / 255, 153 / 255)
+    )  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
-    #Página 4
+    # Página 4
     # Footer setting
     footer_text = f"Reporte AFT de {name}"
     text_width = c.stringWidth(footer_text, "arial", 9)
     x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
-    c.setFillColor(Color(153/255, 153/255, 153/255))  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(
+        Color(153 / 255, 153 / 255, 153 / 255)
+    )  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
-    #Página 5
+    # Página 5
     # Footer setting
     footer_text = f"Reporte AFT de {name}"
     text_width = c.stringWidth(footer_text, "arial", 9)
     x = (width - text_width) / 2 + 15
     c.setFont("arial", 9)
-    c.setFillColor(Color(153/255, 153/255, 153/255))  # we could also use Color(0.7, 0.7, 0.7)
+    c.setFillColor(
+        Color(153 / 255, 153 / 255, 153 / 255)
+    )  # we could also use Color(0.7, 0.7, 0.7)
     c.drawString(x, 53, footer_text)
     c.showPage()
 
@@ -184,7 +196,7 @@ if __name__ == "__main__":
         name="Abel Soto",
         date="30/12/2025",
         grade_code="MDP",
-        final_score= 38.9,
+        final_score=38.9,
         image_path=image_path,
         data=np.array(
             [
@@ -216,7 +228,7 @@ if __name__ == "__main__":
         name="Abel Soto Martinez",
         date="30/12/2025",
         grade_code="P",
-        final_score= 50,
+        final_score=50,
         image_path=image_path,
         data=np.array(
             [
@@ -248,7 +260,7 @@ if __name__ == "__main__":
         name="Abel Soto Martinez de la Cruz Parez de Dios",
         date="30/12/2025",
         grade_code="MEP",
-        final_score= 70,
+        final_score=70,
         image_path=image_path,
         data=np.array(
             [
@@ -280,7 +292,7 @@ if __name__ == "__main__":
         name="Sample",
         date="30/12/2025",
         grade_code="MEP",
-        final_score= 70,
+        final_score=70,
         image_path=image_path,
         data=np.array(
             [
@@ -306,4 +318,4 @@ if __name__ == "__main__":
                 40.5,
             ]
         ),
-    ) 
+    )
