@@ -299,7 +299,7 @@ def generate_report(
     for i in range(13):
         score = resulting_paragraphs[i]["score"]
         c.setFont("arialbd", 12)
-        c.drawString(142, 660, f"{score}%")
+        c.drawString(69, 660, f" Calificación {score}%")
 
         text = resulting_paragraphs[i]["text"]
         justify_text(c, text, x=72, y=520)
