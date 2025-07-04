@@ -284,7 +284,7 @@ def generate_report(
 
     # Page 6
     c.setFont("arialbd", 14)
-    c.drawString(215, 707, name)
+    c.drawString(215, 707, f'"{name}"')
 
     image_width = width - 140
     x = (width - image_width) / 2
