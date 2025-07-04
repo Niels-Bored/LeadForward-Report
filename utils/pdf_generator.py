@@ -19,7 +19,8 @@ os.makedirs(files_folder, exist_ok=True)
 
 templates_folder = os.path.join(current_folder, "pdf_utils")
 original_pdf = os.path.join(templates_folder, "template.pdf")
-image_path = os.path.join(templates_folder, "logo.png")
+logo_path = os.path.join(templates_folder, "logo.png")
+graph_path = os.path.join(templates_folder, "logo.png")
 fonts_folder = os.path.join(templates_folder, "fonts")
 arial = os.path.join(fonts_folder, "ARIAL.TTF")
 arial_bold = os.path.join(fonts_folder, "ARIALBD.TTF")
@@ -47,7 +48,8 @@ def generate_report(
     date: str,
     grade_code: str,
     final_score: float,
-    image_path: str,
+    logo_path: str,
+    graph_path: str,
     data: list,
 ) -> str:
     """Generate PDF report from data
@@ -57,6 +59,8 @@ def generate_report(
         date (str): report issue date
         grade_code (str): acronym for rating-based description
         final_score (str): applicant's final score
+        logo_path (str): path to business logo
+        graph_path (str): path to scores path
         data (list): applicants scores list
 
     Returns:
@@ -80,7 +84,7 @@ def generate_report(
 
     image_width = 130
     x = (width - image_width) / 2
-    c.drawImage(image_path, x, 115, width=image_width, height=image_width)
+    c.drawImage(logo_path, x, 115, width=image_width, height=image_width)
 
     # Draw footer content
     footer_setting(c, name, width, color_darkgrey)
@@ -155,6 +159,19 @@ def generate_report(
 
     c.showPage()
 
+    # Página 6
+    c.setFont("arialbd", 14)
+    c.drawString(215, 707, name)
+
+    image_width = width - 140
+    x = (width - image_width) / 2
+    c.drawImage(graph_path, x, 320, width=image_width, height=image_width - 100)
+
+    # Draw footer content
+    footer_setting(c, name, width, color_darkgrey)
+
+    c.showPage()
+
     c.save()
 
     packet.seek(0)
@@ -165,7 +182,7 @@ def generate_report(
     output = PdfWriter()
 
     # Pages creation
-    for i in range(5):
+    for i in range(6):
         page = existing_pdf.pages[i]
         page.merge_page(new_pdf.pages[i])
         output.add_page(page)
@@ -185,7 +202,8 @@ if __name__ == "__main__":
         date="30/12/2025",
         grade_code="MDP",
         final_score=38.9,
-        image_path=image_path,
+        logo_path=logo_path,
+        graph_path=graph_path,
         data=np.array(
             [
                 53.1,
@@ -217,7 +235,8 @@ if __name__ == "__main__":
         date="30/12/2025",
         grade_code="P",
         final_score=50,
-        image_path=image_path,
+        logo_path=logo_path,
+        graph_path=graph_path,
         data=np.array(
             [
                 53.1,
@@ -249,7 +268,8 @@ if __name__ == "__main__":
         date="30/12/2025",
         grade_code="MEP",
         final_score=70,
-        image_path=image_path,
+        logo_path=logo_path,
+        graph_path=graph_path,
         data=np.array(
             [
                 53.1,
@@ -281,7 +301,8 @@ if __name__ == "__main__":
         date="30/12/2025",
         grade_code="MEP",
         final_score=70,
-        image_path=image_path,
+        logo_path=logo_path,
+        graph_path=graph_path,
         data=np.array(
             [
                 53.1,
