@@ -98,8 +98,18 @@ def footer_setting(c: canvas.Canvas, name: str, width: float, color: Color):
     c.drawString(x, 53, footer_text)
 
 
-# Función para justificar el texto y resaltar en negritas las frases clave
 def justify_text(c, text, x, y, width=467, font="arial", font_size=11):
+    """Justify text
+
+    Args:
+        c (canvas.Canvas): PDF Canvas representation
+        text (str): text to justify
+        x (float): x coordinate
+        y (float): y coordinate
+        width (float): PDF page width
+        font (str): font name
+        font_size (int): font size
+    """
     c.setFont(font, font_size)
 
     words = text.split(" ")
@@ -107,7 +117,7 @@ def justify_text(c, text, x, y, width=467, font="arial", font_size=11):
     line_width = 0
     space_width = c.stringWidth(" ", font, font_size)
 
-    lines = []  # Almacena las líneas ya formadas
+    lines = []  # Store formated lines
 
     for word in words:
         word_width = c.stringWidth(word, font, font_size)
@@ -129,8 +139,19 @@ def justify_text(c, text, x, y, width=467, font="arial", font_size=11):
         y -= font_size + 4
 
 
-# Función para imprimir una línea con justificación y negritas
 def draw_justified_line(c, words, x, y, width, font, font_size, final):
+    """Draw a line with justification
+
+    Args:
+        c (canvas.Canvas): PDF Canvas representation
+        words (list): list of words
+        x (float): x coordinate
+        y (float): y coordinate
+        width (float): PDF page width
+        font (str): font name
+        font_size (int): font size
+        final (bool): if it's the last line
+    """
     total_spaces = len(words) - 1
     text_width = sum(c.stringWidth(word, font, font_size) for word in words)
 
