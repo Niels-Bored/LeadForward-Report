@@ -314,9 +314,9 @@ def generate_report(
     c.showPage()
 
     # Page 21
-    title_y = 692
+    title_y = 677
     title_x = 97
-    paragraph_y = 670
+    paragraph_y = 655
     paragraph_x = 72
 
     for element in list(resulting_titles.keys())[4:6]:
