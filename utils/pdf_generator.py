@@ -255,18 +255,6 @@ def generate_report(
 
     c.showPage()
 
-    # Page 4
-    # Draw footer content
-    footer_setting(c, name, width, color_darkgrey)
-
-    c.showPage()
-
-    # Page 5
-    # Draw footer content
-    footer_setting(c, name, width, color_darkgrey)
-
-    c.showPage()
-
     # Page 6
     c.setFont("arialbd", 14)
     c.drawString(215, 707, f'"{name}"')
@@ -294,6 +282,18 @@ def generate_report(
 
         c.showPage()
     
+    # Page 4
+    # Draw footer content
+    footer_setting(c, name, width, color_darkgrey)
+
+    c.showPage()
+
+    # Page 5
+    # Draw footer content
+    footer_setting(c, name, width, color_darkgrey)
+
+    c.showPage()
+
     # Page 20
     title_y = 642
     title_x = 97
@@ -314,9 +314,9 @@ def generate_report(
     c.showPage()
 
     # Page 21
-    title_y = 677
+    title_y = 660
     title_x = 97
-    paragraph_y = 655
+    paragraph_y = 638
     paragraph_x = 72
 
     for element in list(resulting_titles.keys())[4:6]:
@@ -332,12 +332,6 @@ def generate_report(
 
     c.showPage()
 
-    # Page 22
-    # Draw footer content
-    footer_setting(c, name, width, color_darkgrey)
-
-    c.showPage()
-
     c.save()
 
     packet.seek(0)
@@ -348,7 +342,7 @@ def generate_report(
     output = PdfWriter()
 
     # Pages creation
-    for i in range(22):
+    for i in range(21):
         page = existing_pdf.pages[i]
         page.merge_page(new_pdf.pages[i])
         output.add_page(page)
