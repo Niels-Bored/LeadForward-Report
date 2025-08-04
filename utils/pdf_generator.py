@@ -211,7 +211,7 @@ def generate_report(
 
     data = np.array(data)
 
-    bell_plot_path = generate_bell_curve_plot(final_score, data.mean(), data)
+    bell_plot_path = generate_bell_curve_plot(final_score, round(data.mean(), 2), data)
     image_width = 400
     x = (width - image_width) / 2
     c.drawImage(bell_plot_path, x, 390, width=image_width, height=200)
